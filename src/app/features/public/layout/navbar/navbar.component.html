@@ -1,0 +1,23 @@
+<mat-toolbar class="navbar">
+  <a routerLink="/" class="navbar-brand">
+    <span class="brand-name">Solumastic</span>
+  </a>
+
+  <span class="spacer"></span>
+
+  <nav class="navbar-nav">
+    <a mat-button routerLink="/" routerLinkActive="active-link"
+       [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+    <a mat-button routerLink="/clientes" routerLinkActive="active-link">
+      Nuestros Clientes
+    </a>
+    <a mat-button routerLink="/contacto" routerLinkActive="active-link">
+      Contáctenos
+    </a>
+  </nav>
+
+  <a mat-raised-button routerLink="/saigna" class="saigna-btn">
+    <mat-icon>lock</mat-icon>
+    SAIGNa
+  </a>
+</mat-toolbar>

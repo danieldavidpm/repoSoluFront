@@ -1,0 +1,110 @@
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-tagline">SolumasTIC</p>
+    <h1 class="hero-title">
+      Transformamos procesos empresariales en soluciones digitales inteligentes
+    </h1>
+    <p class="hero-subtitle">
+      En SolumasTIC desarrollamos software a medida, plataformas cloud y soluciones
+      tecnológicas que optimizan la operación de tu empresa, centralizan tu información
+      y potencian tu crecimiento.
+    </p>
+    <p class="hero-badge">
+      <mat-icon>verified</mat-icon>
+      Más de una década creando soluciones personalizadas para empresas que buscan
+      eficiencia, control y escalabilidad.
+    </p>
+    <div class="hero-actions">
+      <a mat-raised-button routerLink="/contacto" class="btn-contact">Contáctenos</a>
+      <a mat-stroked-button routerLink="/saigna" class="btn-saigna">
+        <mat-icon>lock</mat-icon>
+        Acceder a SAIGNa
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUIÉNES SOMOS ===== -->
+<section class="who-section" id="quienes-somos">
+  <div class="section-container">
+    <p class="section-label">¿Quiénes somos?</p>
+    <h2 class="section-title">Tecnología creada para resolver problemas reales</h2>
+    <div class="who-body">
+      <p>
+        En SolumasTIC somos una empresa peruana especializada en el desarrollo de
+        software empresarial personalizado.
+      </p>
+      <p>
+        Diseñamos soluciones que se adaptan a la operación real de cada negocio,
+        permitiendo automatizar procesos, mejorar la trazabilidad de la información
+        y facilitar la toma de decisiones.
+      </p>
+      <p>
+        Trabajamos con empresas de diversos sectores, con experiencia destacada en la
+        digitalización de procesos para el rubro de gas natural, operaciones técnicas,
+        gestión documental y control administrativo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUÉ HACEMOS ===== -->
+<section class="services-section">
+  <div class="section-container">
+    <div class="section-header">
+      <p class="section-label">Qué hacemos</p>
+      <h2 class="section-title">Soluciones tecnológicas que impulsan tu operación</h2>
+    </div>
+    <div class="services-grid">
+      @for (service of services; track service.title) {
+        <mat-card class="service-card" appearance="outlined">
+          <mat-card-content>
+            <div class="service-icon-wrap">
+              <mat-icon>{{ service.icon }}</mat-icon>
+            </div>
+            <h3 class="service-title">{{ service.title }}</h3>
+            <p class="service-desc">{{ service.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFICIOS ===== -->
+<section class="benefits-section">
+  <div class="section-container">
+    <div class="section-header">
+      <p class="section-label">Por qué elegirnos</p>
+      <h2 class="section-title">¿Por qué elegir SolumasTIC?</h2>
+    </div>
+    <div class="benefits-grid">
+      @for (benefit of benefits; track benefit.title) {
+        <div class="benefit-item">
+          <div class="benefit-icon-wrap">
+            <mat-icon>{{ benefit.icon }}</mat-icon>
+          </div>
+          <div class="benefit-text">
+            <h3>{{ benefit.title }}</h3>
+            <p>{{ benefit.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA SAIGNA ===== -->
+<section class="cta-section">
+  <div class="section-container cta-inner">
+    <div class="cta-text">
+      <h2>¿Ya eres cliente de Solumastic?</h2>
+      <p>Accede al portal SAIGNa para consultar tus proyectos, contratos e indicadores.</p>
+    </div>
+    <a mat-raised-button routerLink="/saigna" class="cta-btn">
+      <mat-icon>lock_open</mat-icon>
+      Acceder a SAIGNa
+    </a>
+  </div>
+</section>

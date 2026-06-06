@@ -1,0 +1,302 @@
+// ── Shared ────────────────────────────────────────────────────────────────────
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+
+  @media (max-width: 768px) {
+    padding: 0 24px;
+  }
+}
+
+// ── Encabezado ────────────────────────────────────────────────────────────────
+
+.page-header {
+  background: linear-gradient(150deg, #001833 0%, #002f5e 55%, #004080 100%);
+  color: white;
+  padding: 72px 0 64px;
+  text-align: center;
+}
+
+.page-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 14px;
+}
+
+.page-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 16px;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 auto;
+  max-width: 520px;
+  line-height: 1.65;
+}
+
+// ── Sección contacto ──────────────────────────────────────────────────────────
+
+.contact-section {
+  background-color: var(--sol-bg);
+  padding: 80px 0 96px;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Paneles ───────────────────────────────────────────────────────────────────
+
+.panel {
+  background-color: var(--sol-surface);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+
+  @media (max-width: 480px) {
+    padding: 28px 20px;
+  }
+}
+
+.panel-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--sol-primary);
+  margin: 0 0 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--sol-border);
+}
+
+// ── Formulario ────────────────────────────────────────────────────────────────
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-full {
+  width: 100%;
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: var(--sol-primary) !important;
+  color: white !important;
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 500 !important;
+  margin-top: 8px;
+  border-radius: 8px !important;
+
+  mat-icon {
+    margin-right: 8px;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+  }
+}
+
+// ── Estado de éxito ───────────────────────────────────────────────────────────
+
+.success-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 0 32px;
+
+  .success-icon {
+    font-size: 72px;
+    height: 72px;
+    width: 72px;
+    color: #2e7d32;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--sol-primary);
+    margin: 0 0 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--sol-text-muted);
+    line-height: 1.6;
+    margin: 0 0 28px;
+  }
+
+  button {
+    color: var(--sol-primary) !important;
+    border-color: var(--sol-primary) !important;
+
+    mat-icon {
+      margin-right: 6px;
+      font-size: 18px;
+      height: 18px;
+      width: 18px;
+    }
+  }
+}
+
+// ── Lista de información ──────────────────────────────────────────────────────
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.info-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.info-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: rgba(0, 102, 204, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    color: var(--sol-accent);
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+  }
+
+  &.whatsapp {
+    background-color: rgba(37, 211, 102, 0.12);
+
+    mat-icon {
+      color: #25c260;
+    }
+  }
+}
+
+.info-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.info-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--sol-text-muted);
+  margin: 0;
+}
+
+.info-value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--sol-text);
+  margin: 2px 0 0;
+}
+
+.info-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--sol-accent);
+  text-decoration: none;
+  margin-top: 2px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.wa-link {
+    color: #1da851;
+  }
+}
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.8rem;
+  color: var(--sol-accent);
+  text-decoration: none;
+  margin-top: 4px;
+
+  mat-icon {
+    font-size: 14px;
+    height: 14px;
+    width: 14px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ── Mapa referencial ──────────────────────────────────────────────────────────
+
+.map-box {
+  background: linear-gradient(135deg, #e8edf5, #dde4ee);
+  border: 1px solid var(--sol-border);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+
+  mat-icon {
+    font-size: 52px;
+    height: 52px;
+    width: 52px;
+    color: var(--sol-accent);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  p {
+    font-size: 0.88rem;
+    color: var(--sol-text-muted);
+    margin: 0 0 20px;
+    line-height: 1.5;
+  }
+}
+
+.open-map-btn {
+  color: var(--sol-primary) !important;
+  border-color: var(--sol-primary) !important;
+
+  mat-icon {
+    font-size: 16px !important;
+    height: 16px !important;
+    width: 16px !important;
+    margin-right: 6px;
+    margin-bottom: 0 !important;
+    display: inline !important;
+  }
+}

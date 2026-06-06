@@ -1,0 +1,165 @@
+<!-- ===== ENCABEZADO ===== -->
+<section class="page-header">
+  <div class="container">
+    <p class="page-label">Estamos para ayudarte</p>
+    <h1 class="page-title">Contáctenos</h1>
+    <p class="page-subtitle">
+      Cuéntanos sobre tu proyecto o consulta. Te respondemos a la brevedad.
+    </p>
+  </div>
+</section>
+
+<!-- ===== CONTENIDO PRINCIPAL ===== -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- ── Formulario ── -->
+      <div class="panel form-panel">
+        @if (!submitted) {
+          <h2 class="panel-title">Envíanos un mensaje</h2>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="contact-form">
+
+            <mat-form-field appearance="outline" class="field-full">
+              <mat-label>Nombre completo</mat-label>
+              <input matInput formControlName="nombre" placeholder="Tu nombre y apellido" />
+              <mat-icon matSuffix>person</mat-icon>
+              @if (hasError('nombre', 'required')) {
+                <mat-error>El nombre es obligatorio</mat-error>
+              }
+              @if (hasError('nombre', 'minlength')) {
+                <mat-error>Ingresa al menos 3 caracteres</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="field-full">
+              <mat-label>Correo electrónico</mat-label>
+              <input matInput formControlName="email" type="email" placeholder="tu@empresa.com" />
+              <mat-icon matSuffix>email</mat-icon>
+              @if (hasError('email', 'required')) {
+                <mat-error>El correo es obligatorio</mat-error>
+              }
+              @if (hasError('email', 'email')) {
+                <mat-error>Ingresa un correo válido</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="field-full">
+              <mat-label>Teléfono (opcional)</mat-label>
+              <input matInput formControlName="telefono" placeholder="987 654 321" />
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="field-full">
+              <mat-label>Mensaje</mat-label>
+              <textarea
+                matInput
+                formControlName="mensaje"
+                rows="5"
+                placeholder="Describe tu consulta o proyecto...">
+              </textarea>
+              @if (hasError('mensaje', 'required')) {
+                <mat-error>El mensaje es obligatorio</mat-error>
+              }
+              @if (hasError('mensaje', 'minlength')) {
+                <mat-error>Ingresa al menos 10 caracteres</mat-error>
+              }
+            </mat-form-field>
+
+            <button mat-raised-button type="submit" class="submit-btn">
+              <mat-icon>send</mat-icon>
+              Enviar mensaje
+            </button>
+
+          </form>
+        } @else {
+          <div class="success-state">
+            <mat-icon class="success-icon">check_circle</mat-icon>
+            <h3>¡Mensaje enviado!</h3>
+            <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
+            <button mat-stroked-button (click)="sendAnother()">
+              <mat-icon>refresh</mat-icon>
+              Enviar otro mensaje
+            </button>
+          </div>
+        }
+      </div>
+
+      <!-- ── Información de contacto ── -->
+      <div class="panel info-panel">
+        <h2 class="panel-title">Información de contacto</h2>
+
+        <div class="info-list">
+
+          <div class="info-item">
+            <div class="info-icon">
+              <mat-icon>location_on</mat-icon>
+            </div>
+            <div class="info-body">
+              <p class="info-label">Dirección</p>
+              <p class="info-value">{{ info.address }}</p>
+              <a [href]="info.mapsUrl" target="_blank" rel="noopener" class="map-link">
+                Ver en Google Maps
+                <mat-icon>open_in_new</mat-icon>
+              </a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <mat-icon>schedule</mat-icon>
+            </div>
+            <div class="info-body">
+              <p class="info-label">Horario de atención</p>
+              <p class="info-value">{{ info.hours }}</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon whatsapp">
+              <mat-icon>chat</mat-icon>
+            </div>
+            <div class="info-body">
+              <p class="info-label">WhatsApp</p>
+              <a href="https://wa.me/51986105706"
+                 target="_blank"
+                 rel="noopener"
+                 class="info-link wa-link">
+                {{ info.whatsapp }}
+              </a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <mat-icon>email</mat-icon>
+            </div>
+            <div class="info-body">
+              <p class="info-label">Correo electrónico</p>
+              <a href="mailto:jessica.felix@solumastic.com" class="info-link">
+                {{ info.email }}
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Mapa referencial -->
+        <div class="map-box">
+          <mat-icon>map</mat-icon>
+          <p>Jr. Las Rosas 316, Urb. Primavera · Los Olivos, Lima</p>
+          <a [href]="info.mapsUrl"
+             target="_blank"
+             rel="noopener"
+             mat-stroked-button
+             class="open-map-btn">
+            <mat-icon>open_in_new</mat-icon>
+            Abrir en Google Maps
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

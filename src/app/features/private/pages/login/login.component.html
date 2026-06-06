@@ -1,0 +1,82 @@
+<div class="login-page">
+  <div class="login-container">
+
+    <div class="login-brand">
+      <div class="brand-icon">
+        <mat-icon>business</mat-icon>
+      </div>
+      <h1 class="brand-name">Solumastic</h1>
+      <p class="brand-subtitle">Portal SAIGNa</p>
+    </div>
+
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Iniciar Sesión</mat-card-title>
+        <mat-card-subtitle>Ingresa tus credenciales de acceso</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form" novalidate>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Correo electrónico</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="usuario@solumastic.com"
+              autocomplete="email">
+            <mat-icon matSuffix>email</mat-icon>
+            @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
+              <mat-error>El correo es requerido</mat-error>
+            } @else if (form.get('email')?.hasError('email') && form.get('email')?.touched) {
+              <mat-error>Ingresa un correo válido</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <input
+              matInput
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              autocomplete="current-password">
+            <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword"
+              [attr.aria-label]="hidePassword ? 'Mostrar contraseña' : 'Ocultar contraseña'">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            @if (form.get('password')?.hasError('required') && form.get('password')?.touched) {
+              <mat-error>La contraseña es requerida</mat-error>
+            } @else if (form.get('password')?.hasError('minlength') && form.get('password')?.touched) {
+              <mat-error>Mínimo 6 caracteres</mat-error>
+            }
+          </mat-form-field>
+
+          @if (errorMessage) {
+            <div class="error-banner">
+              <mat-icon>error_outline</mat-icon>
+              <span>{{ errorMessage }}</span>
+            </div>
+          }
+
+          <button
+            mat-flat-button
+            class="login-btn"
+            type="submit"
+            [disabled]="form.invalid || loading">
+            <mat-spinner diameter="20" [style.display]="loading ? 'inline-flex' : 'none'"></mat-spinner>
+            <mat-icon [style.display]="loading ? 'none' : 'inline'">lock_open</mat-icon>
+            <span>{{ loading ? 'Verificando...' : 'Ingresar' }}</span>
+          </button>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <a class="back-link" routerLink="/">
+      <mat-icon>arrow_back</mat-icon>
+      Volver al sitio
+    </a>
+
+  </div>
+</div>

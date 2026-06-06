@@ -1,0 +1,13 @@
+<div class="private-layout">
+  <app-toolbar (toggleSidenav)="sidenav.toggle()" />
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" [opened]="sidenavOpen" class="sidenav">
+      <app-sidebar />
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main-content">
+      <router-outlet />
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

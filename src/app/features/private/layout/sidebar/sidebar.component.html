@@ -1,0 +1,27 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-brand">SAIGNa</span>
+    <p class="sidebar-subtitle">Portal Empresarial</p>
+  </div>
+
+  <mat-nav-list class="sidebar-nav">
+    @for (item of navItems; track item.route) {
+      <a mat-list-item
+         [routerLink]="item.route"
+         routerLinkActive="active-item"
+         class="nav-item">
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span matListItemTitle>{{ item.label }}</span>
+      </a>
+    }
+  </mat-nav-list>
+
+  <div class="sidebar-footer">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" class="back-item">
+        <mat-icon matListItemIcon>arrow_back</mat-icon>
+        <span matListItemTitle>Volver al sitio</span>
+      </a>
+    </mat-nav-list>
+  </div>
+</div>

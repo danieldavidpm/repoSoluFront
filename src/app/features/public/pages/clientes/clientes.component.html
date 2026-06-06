@@ -1,0 +1,70 @@
+<!-- ===== ENCABEZADO ===== -->
+<section class="page-header">
+  <div class="container">
+    <p class="page-label">Cartera de clientes</p>
+    <h1 class="page-title">Nuestros Clientes</h1>
+    <p class="page-subtitle">
+      Empresas que confían en SolumasTIC para digitalizar y optimizar sus operaciones.
+    </p>
+  </div>
+</section>
+
+<!-- ===== GRILLA DE CLIENTES ===== -->
+<section class="clients-section">
+  <div class="container">
+    <div class="clients-grid">
+      @for (client of clients; track client.name) {
+        <mat-card class="client-card" appearance="outlined">
+          <mat-card-content>
+            <div class="client-logo">
+              <img [src]="client.logo" [alt]="client.name" class="client-logo-img" />
+            </div>
+            <h3 class="client-name">{{ client.name }}</h3>
+            <p class="client-sector">
+              <mat-icon>category</mat-icon>
+              {{ client.sector }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTORES DESTACADOS ===== -->
+<section class="sectors-section">
+  <div class="container">
+    <div class="sectors-header">
+      <p class="section-label">Casos destacados</p>
+      <h2 class="section-title">Rubros donde tenemos experiencia comprobada</h2>
+      <p class="section-subtitle">
+        Hemos acompañado la digitalización de procesos en sectores complejos,
+        donde la trazabilidad y el control operacional son críticos.
+      </p>
+    </div>
+    <div class="sectors-grid">
+      @for (sector of highlightedSectors; track sector.label) {
+        <div class="sector-item">
+          <div class="sector-icon-wrap">
+            <mat-icon>{{ sector.icon }}</mat-icon>
+          </div>
+          <span class="sector-label">{{ sector.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div class="cta-text">
+      <h2>¿Tu empresa quiere ser parte de esta red?</h2>
+      <p>Conversemos sobre cómo podemos transformar tu operación.</p>
+    </div>
+    <a mat-raised-button routerLink="/contacto" class="cta-btn">
+      <mat-icon>chat</mat-icon>
+      Contáctenos
+    </a>
+  </div>
+</section>
