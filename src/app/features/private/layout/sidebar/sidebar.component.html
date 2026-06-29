@@ -18,6 +18,10 @@
 
   <div class="sidebar-footer">
     <mat-nav-list>
+      <button mat-list-item class="logout-item" (click)="logout()">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span matListItemTitle>Cerrar Sesión</span>
+      </button>
       <a mat-list-item routerLink="/" class="back-item">
         <mat-icon matListItemIcon>arrow_back</mat-icon>
         <span matListItemTitle>Volver al sitio</span>

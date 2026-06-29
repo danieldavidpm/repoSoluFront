@@ -1,0 +1,90 @@
+<div class="dashboard-wrapper">
+
+  <div class="dashboard-header">
+    <h2 class="dashboard-title">Dashboard SAIGNa</h2>
+    <mat-form-field appearance="outline" class="fecha-field">
+      <mat-label>Fecha de referencia</mat-label>
+      <input matInput [matDatepicker]="picker" [formControl]="fechaControl" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker" />
+      <mat-datepicker #picker />
+    </mat-form-field>
+  </div>
+
+  @if (cargando) {
+    <mat-progress-bar mode="indeterminate" class="loading-bar" />
+  }
+
+  @if (error) {
+    <mat-card class="error-card">
+      <mat-card-content>
+        <mat-icon>error_outline</mat-icon>
+        <span>Error al cargar los indicadores. Verifica tu conexión.</span>
+      </mat-card-content>
+    </mat-card>
+  }
+
+  @if (data) {
+    <div class="kpi-grid">
+      <mat-card class="kpi-card kpi-verde">
+        <mat-card-content>
+          <mat-icon>check_circle</mat-icon>
+          <div class="kpi-value">{{ data.aprobadosMes }}</div>
+          <div class="kpi-label">Aprobados este mes</div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="kpi-card kpi-naranja">
+        <mat-card-content>
+          <mat-icon>pending</mat-icon>
+          <div class="kpi-value">{{ data.pendienteVenta }}</div>
+          <div class="kpi-label">Pendiente Venta</div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="kpi-card kpi-azul">
+        <mat-card-content>
+          <mat-icon>hub</mat-icon>
+          <div class="kpi-value">{{ data.pendienteRedInterna }}</div>
+          <div class="kpi-label">Pendiente Red Interna</div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="kpi-card kpi-morado">
+        <mat-card-content>
+          <mat-icon>build</mat-icon>
+          <div class="kpi-value">{{ data.pendienteHabilitacion }}</div>
+          <div class="kpi-label">Pendiente Habilitación</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="charts-grid">
+      <mat-card class="chart-card">
+        <mat-card-header>
+          <mat-card-title>Avance Ventas Trimestral</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <canvas baseChart
+            [data]="ventasChartData"
+            [options]="chartOptions"
+            type="bar">
+          </canvas>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="chart-card">
+        <mat-card-header>
+          <mat-card-title>Avance Habilitación Trimestral</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <canvas baseChart
+            [data]="habilitacionChartData"
+            [options]="chartOptions"
+            type="bar">
+          </canvas>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  }
+
+</div>

@@ -1,0 +1,199 @@
+<div class="consultas-page">
+
+  <!-- ── Encabezado ─────────────────────────────────────────────────────── -->
+  <div class="page-header">
+    <h1 class="page-title">Consulta</h1>
+    <div class="header-actions">
+      <button mat-stroked-button (click)="limpiarFiltros()">Limpiar Filtros</button>
+      <button mat-flat-button color="primary" (click)="ejecutarConsulta()">Ejecutar Consulta</button>
+    </div>
+  </div>
+
+  <!-- ── Panel de filtros ───────────────────────────────────────────────── -->
+  <div class="filter-panel">
+    <form [formGroup]="filterForm">
+
+      <!-- PROYECTO + RESPONSABLE -->
+      <div class="filter-row filter-row--combined">
+        <div class="filter-sub">
+          <span class="filter-label">PROYECTO:</span>
+          <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            @if (cargandoProyectos) {
+              <mat-select placeholder="Cargando proyectos..." disabled>
+                <mat-option disabled>Cargando...</mat-option>
+              </mat-select>
+            } @else {
+              <mat-select formControlName="proyecto" placeholder="Seleccionar proyecto...">
+                <mat-option [value]="null">— Todos —</mat-option>
+                @for (p of proyectos; track p.idProyecto) {
+                  <mat-option [value]="p.idProyecto">{{ p.nombreProyecto }}</mat-option>
+                }
+              </mat-select>
+            }
+          </mat-form-field>
+        </div>
+        <div class="filter-sub">
+          <span class="filter-label">RESPONSABLE:</span>
+          <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            @if (cargandoPersonal) {
+              <mat-select placeholder="Cargando personal..." disabled>
+                <mat-option disabled>Cargando...</mat-option>
+              </mat-select>
+            } @else {
+              <mat-select formControlName="responsable" placeholder="Seleccionar...">
+                <mat-option [value]="null">— Todos —</mat-option>
+                @for (p of personal; track p.idPersonal) {
+                  <mat-option [value]="p.idPersonal">{{ p.nombrePersonal }}</mat-option>
+                }
+              </mat-select>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- PROCESO -->
+      <div class="filter-row">
+        <span class="filter-label">PROCESO:</span>
+        <div class="filter-inputs">
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="flex-1">
+            <mat-select formControlName="proceso" placeholder="Seleccionar...">
+              <mat-option [value]="null">— Todos —</mat-option>
+              @for (item of procesos; track item) {
+                <mat-option [value]="item">{{ item }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="flex-1">
+            @if (cargandoEstados) {
+              <mat-select placeholder="Cargando..." disabled>
+                <mat-option disabled>Cargando...</mat-option>
+              </mat-select>
+            } @else {
+              <mat-select formControlName="procesoSecundario" placeholder="Seleccionar estado...">
+                <mat-option [value]="null">— Todos —</mat-option>
+                @for (e of estadosSecundarios; track e.idEstado) {
+                  <mat-option [value]="e.idEstado">{{ e.nombreEstado }}</mat-option>
+                }
+              </mat-select>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- FECHA -->
+      <div class="filter-row">
+        <span class="filter-label">FECHA:</span>
+        <div class="filter-inputs">
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="flex-1">
+            <mat-select formControlName="fechaTipo" placeholder="Seleccionar...">
+              <mat-option [value]="null">— Tipo —</mat-option>
+              @for (item of fechaTipos; track item) {
+                <mat-option [value]="item">{{ item }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <input type="date" class="date-input flex-1" formControlName="fechaDesde">
+          <input type="date" class="date-input flex-1" formControlName="fechaHasta">
+        </div>
+      </div>
+
+      <!-- DATO -->
+      <div class="filter-row filter-row--last">
+        <span class="filter-label">DATO:</span>
+        <div class="filter-inputs">
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="flex-1">
+            <mat-select formControlName="datoTipo" placeholder="Seleccionar...">
+              <mat-option [value]="null">— Tipo —</mat-option>
+              @for (item of datoTipos; track item) {
+                <mat-option [value]="item">{{ item }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="flex-2">
+            <input matInput formControlName="datoValor" placeholder="Ingresar valor de búsqueda...">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- ── Resultados ─────────────────────────────────────────────────────── -->
+  @if (cargando) {
+    <div class="loading-state">
+      <mat-spinner diameter="48" />
+      <p>Cargando contratos...</p>
+    </div>
+
+  } @else if (errorMsg) {
+    <div class="error-state">
+      <mat-icon>error_outline</mat-icon>
+      <p>{{ errorMsg }}</p>
+      <button mat-stroked-button (click)="ejecutarConsulta()">Reintentar</button>
+    </div>
+
+  } @else if (contratos.length > 0) {
+    <div class="results-grid">
+      @for (contrato of contratos; track contrato.codigoCliente) {
+
+        <mat-card class="contrato-card">
+
+          <!-- Estado general (color) -->
+          <div class="card-top">
+            <span
+              class="estado-dot"
+              [style.background-color]="colorEstadoGeneral(contrato.estadoGeneral)">
+            </span>
+            <span class="estado-general-label">{{ contrato.estadoGeneral }}</span>
+          </div>
+
+          <!-- Campos del contrato -->
+          <div class="card-info">
+
+            <div class="info-col span-2">
+              <span class="info-label">NOMBRES CLIENTE</span>
+              <span class="info-value info-value--nombre">{{ contrato.nombresCliente }}</span>
+            </div>
+
+            <div class="info-col">
+              <span class="info-label">DIRECCIÓN</span>
+              <span class="info-value">{{ contrato.direccionCliente }}</span>
+            </div>
+
+            <div class="info-col">
+              <span class="info-label">DISTRITO</span>
+              <span class="info-value">{{ contrato.distritoCliente }}</span>
+            </div>
+
+            <div class="info-col">
+              <span class="info-label">ESTADO CONTRATO</span>
+              <span class="info-value">{{ contrato.estadoContrato }}</span>
+            </div>
+
+            <div class="info-col">
+              <span class="info-label">ESTADO RED INTERNA</span>
+              <span class="info-value">{{ contrato.estadoRedInterna }}</span>
+            </div>
+
+          </div>
+
+          <!-- Footer -->
+          <div class="card-footer" [routerLink]="['/saigna/detalle', contrato.codigoCliente]">
+            <span class="ver-detalles">Ver Detalles</span>
+            <mat-icon class="arrow-icon">arrow_forward</mat-icon>
+          </div>
+
+        </mat-card>
+
+      }
+    </div>
+
+  } @else {
+    <div class="sin-resultados">
+      <mat-icon>search_off</mat-icon>
+      <p>No se encontraron contratos con los filtros aplicados.</p>
+    </div>
+  }
+
+</div>

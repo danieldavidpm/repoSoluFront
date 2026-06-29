@@ -1,0 +1,263 @@
+<div class="detalle-wrapper">
+
+  <!-- ── Encabezado ────────────────────────────────────────────────────── -->
+  <div class="detalle-header">
+    <button mat-icon-button routerLink="/saigna/consultas" class="back-btn" matTooltip="Volver a consultas">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="header-text">
+      <h2 class="detalle-title">Detalle de Contrato</h2>
+      @if (detalle) {
+        <span class="estado-chip"
+          [style.background-color]="colorEstadoGeneral(detalle.estadoGeneral)"
+          [style.color]="'white'">
+          {{ detalle.estadoGeneral ?? '—' }}
+        </span>
+      }
+    </div>
+  </div>
+
+  <!-- ── Loading ───────────────────────────────────────────────────────── -->
+  @if (cargando) {
+    <mat-progress-bar mode="indeterminate" />
+  }
+
+  <!-- ── Error ─────────────────────────────────────────────────────────── -->
+  @if (error) {
+    <mat-card class="error-card">
+      <mat-card-content>
+        <mat-icon>error_outline</mat-icon>
+        <span>No se pudo cargar el contrato. Verifica tu conexión.</span>
+      </mat-card-content>
+    </mat-card>
+  }
+
+  <!-- ── Contenido ─────────────────────────────────────────────────────── -->
+  @if (detalle) {
+    <div class="sections-grid">
+
+      <!-- SECCIÓN 1: Datos del Cliente -->
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="section-icon">person</mat-icon>
+          <mat-card-title>Datos del Cliente</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="fields-grid">
+            <div class="field">
+              <span class="field-label">CÓDIGO CLIENTE</span>
+              <span class="field-value">{{ detalle.codigoCliente ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">DNI</span>
+              <span class="field-value">{{ detalle.dniCliente ?? '—' }}</span>
+            </div>
+            <div class="field span-2">
+              <span class="field-label">NOMBRES</span>
+              <span class="field-value field-value--destacado">{{ detalle.nombresCliente ?? '—' }}</span>
+            </div>
+            <div class="field span-2">
+              <span class="field-label">DIRECCIÓN</span>
+              <span class="field-value">{{ detalle.direccionCliente ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">DISTRITO</span>
+              <span class="field-value">{{ detalle.distritoCliente ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">TELÉFONOS</span>
+              <span class="field-value">{{ detalle.telefonosCliente ?? '—' }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- SECCIÓN 2: Datos del Contrato -->
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="section-icon">description</mat-icon>
+          <mat-card-title>Datos del Contrato</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="fields-grid">
+            <div class="field">
+              <span class="field-label">CUENTA CONTRATO</span>
+              <span class="field-value">{{ detalle.cuentaContrato ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">CUP</span>
+              <span class="field-value">{{ detalle.cup ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">NRO INSTALACIÓN</span>
+              <span class="field-value">{{ detalle.nroInstalacion ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">ESTADO CONTRATO</span>
+              <span class="field-value">{{ detalle.estadoContrato ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">FECHA ESTADO</span>
+              <span class="field-value">{{ detalle.fechaEstado ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">FECHA FIRMA</span>
+              <span class="field-value">{{ detalle.fechaFirma ?? '—' }}</span>
+            </div>
+            <div class="field span-2">
+              <span class="field-label">ASESOR COMERCIAL</span>
+              <span class="field-value">{{ detalle.asesorComercial ?? '—' }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- SECCIÓN 3: Proceso e Instalación -->
+      <mat-card class="section-card section-card--full">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="section-icon">settings</mat-icon>
+          <mat-card-title>Proceso e Instalación</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="fields-grid">
+            <div class="field">
+              <span class="field-label">MATERIAL</span>
+              <span class="field-value">{{ detalle.material ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">CANTIDAD PUNTOS</span>
+              <span class="field-value">{{ detalle.cantidadPuntos ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">NRO ENVÍO</span>
+              <span class="field-value">{{ detalle.nroEnvio ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">FECHA ENVÍO CALIDDA</span>
+              <span class="field-value">{{ detalle.fechaEnvioCalidda ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">CONVENIO FISE</span>
+              <span class="field-value">{{ detalle.convenioFise ?? '—' }}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">ESTADO RED INTERNA</span>
+              <span class="field-value">{{ detalle.estadoRedInterna ?? '—' }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- SECCIÓN 4: Adjuntos -->
+      <mat-card class="section-card section-card--full">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="section-icon">attach_file</mat-icon>
+          <mat-card-title>
+            Adjuntos
+            @if (!cargandoAdjuntos && !errorAdjuntos) {
+              <span class="badge">{{ adjuntos.length }}</span>
+            }
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+          @if (cargandoAdjuntos) {
+            <mat-progress-bar mode="indeterminate" />
+          } @else if (errorAdjuntos) {
+            <p class="seccion-vacia seccion-vacia--error">
+              <mat-icon>error_outline</mat-icon> No se pudieron cargar los adjuntos.
+            </p>
+          } @else if (adjuntos.length === 0) {
+            <p class="seccion-vacia">Sin adjuntos registrados.</p>
+          } @else {
+            <div class="adjuntos-lista">
+              @for (adj of adjuntos; track adj.attachmentId) {
+                <div class="adjunto-row">
+                  <mat-icon class="adjunto-icon">{{ iconoArchivo(adj.manualFileName) }}</mat-icon>
+                  <div class="adjunto-info">
+                    <span class="adjunto-nombre">{{ adj.manualFileName }}</span>
+                    <span class="adjunto-meta">
+                      <span class="carpeta-badge">{{ adj.carpeta }}</span>
+                      {{ adj.itemCreationDate | date:'dd/MM/yyyy' }} &nbsp;·&nbsp; {{ adj.itemCreationUser }}
+                    </span>
+                  </div>
+                  <div class="adjunto-acciones">
+                    <button mat-icon-button
+                      matTooltip="Previsualizar"
+                      (click)="previsualizarAdjunto(adj)">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                    <button mat-icon-button
+                      matTooltip="Descargar"
+                      (click)="descargarAdjunto(adj)">
+                      <mat-icon>download</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+        </mat-card-content>
+      </mat-card>
+
+      <!-- SECCIÓN 5: Comentarios -->
+      <mat-card class="section-card section-card--full">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="section-icon">chat</mat-icon>
+          <mat-card-title>
+            Comentarios
+            @if (!cargandoComentarios && !errorComentarios) {
+              <span class="badge">{{ comentarios.length }}</span>
+            }
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+          @if (cargandoComentarios) {
+            <mat-progress-bar mode="indeterminate" />
+          } @else if (errorComentarios) {
+            <p class="seccion-vacia seccion-vacia--error">
+              <mat-icon>error_outline</mat-icon> No se pudieron cargar los comentarios.
+            </p>
+          } @else if (comentarios.length === 0) {
+            <p class="seccion-vacia">Sin comentarios registrados.</p>
+          } @else {
+            <div class="comentarios-lista">
+              @for (com of comentarios; track $index) {
+                <div class="comentario-item">
+                  <div class="comentario-avatar">
+                    <mat-icon>person</mat-icon>
+                  </div>
+                  <div class="comentario-body">
+                    <div class="comentario-header">
+                      <span class="comentario-usuario">{{ com.usu_Come }}</span>
+                      <span class="comentario-fecha">{{ com.fec_Come | date:'dd/MM/yyyy HH:mm' }}</span>
+                    </div>
+                    <p class="comentario-texto">{{ com.desc_Come }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  }
+
+</div>
+
+<!-- ── Lightbox imagen ───────────────────────────────────────────────────── -->
+@if (imagenPrevia) {
+  <div class="lightbox-overlay" (click)="cerrarPrevia()">
+    <button mat-icon-button class="lightbox-cerrar" (click)="cerrarPrevia()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <img [src]="imagenPrevia"
+         class="lightbox-imagen"
+         (click)="$event.stopPropagation()"
+         alt="Vista previa" />
+  </div>
+}

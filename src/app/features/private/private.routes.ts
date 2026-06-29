@@ -16,4 +16,9 @@ export const privateRoutes: Routes = [
     loadComponent: () =>
       import('./pages/consultas/consultas.component').then(m => m.ConsultasComponent),
   },
+  {
+    path: 'detalle/:id',
+    loadComponent: () =>
+      import('./pages/detalle/detalle.component').then(m => m.DetalleComponent),
+  },
 ];

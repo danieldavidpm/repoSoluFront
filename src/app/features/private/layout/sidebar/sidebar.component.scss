@@ -3,7 +3,17 @@
   flex-direction: column;
   height: 100%;
   background-color: var(--sol-primary);
+
+  // Angular Material M3 renderiza el texto dentro de .mdc-list-item__primary-text
+  // y los iconos en .mat-mdc-list-item-icon. Esos elementos tienen color propio
+  // que no hereda del padre — ::ng-deep es la única forma de alcanzarlos.
+  ::ng-deep {
+    .mdc-list-item__primary-text  { color: rgba(255, 255, 255, 0.85) !important; }
+    .mat-mdc-list-item-icon        { color: rgba(255, 255, 255, 0.70) !important; }
+  }
 }
+
+// ── Encabezado ────────────────────────────────────────────────────────────────
 
 .sidebar-header {
   padding: 24px 20px 16px;
@@ -24,39 +34,58 @@
   }
 }
 
+// ── Navegación ────────────────────────────────────────────────────────────────
+
 .sidebar-nav {
   flex: 1;
   padding-top: 8px;
 }
 
 .nav-item {
-  color: rgba(255, 255, 255, 0.8) !important;
   margin: 2px 8px;
   border-radius: 8px;
 
   &.active-item {
     background-color: rgba(255, 255, 255, 0.15) !important;
-    color: white !important;
 
-    mat-icon {
-      color: white;
+    ::ng-deep {
+      .mdc-list-item__primary-text { color: white !important; }
+      .mat-mdc-list-item-icon       { color: white !important; }
     }
   }
-
-  mat-icon {
-    color: rgba(255, 255, 255, 0.7);
-  }
 }
+
+// ── Pie del sidebar ───────────────────────────────────────────────────────────
 
 .sidebar-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding-bottom: 8px;
 
-  .back-item {
-    color: rgba(255, 255, 255, 0.55) !important;
+  .logout-item {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
 
-    mat-icon {
-      color: rgba(255, 255, 255, 0.55);
+    ::ng-deep {
+      .mdc-list-item__primary-text { color: rgba(255, 180, 180, 0.9) !important; }
+      .mat-mdc-list-item-icon       { color: rgba(255, 180, 180, 0.9) !important; }
+    }
+
+    &:hover {
+      background-color: rgba(255, 80, 80, 0.15) !important;
+
+      ::ng-deep {
+        .mdc-list-item__primary-text { color: white !important; }
+        .mat-mdc-list-item-icon       { color: white !important; }
+      }
+    }
+  }
+
+  .back-item {
+    ::ng-deep {
+      .mdc-list-item__primary-text { color: rgba(255, 255, 255, 0.55) !important; }
+      .mat-mdc-list-item-icon       { color: rgba(255, 255, 255, 0.55) !important; }
     }
   }
 }

@@ -1,0 +1,314 @@
+.detalle-wrapper {
+  padding: 24px;
+  max-width: 1100px;
+}
+
+// ── Encabezado ────────────────────────────────────────────────────────────────
+
+.detalle-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.back-btn {
+  color: var(--sol-primary);
+  flex-shrink: 0;
+}
+
+.header-text {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.detalle-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--sol-primary);
+  margin: 0;
+}
+
+.estado-chip {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+// ── Layout de secciones ───────────────────────────────────────────────────────
+
+.sections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-card {
+  &--full {
+    grid-column: 1 / -1;
+  }
+}
+
+.section-icon {
+  color: var(--sol-primary);
+}
+
+// ── Campos ────────────────────────────────────────────────────────────────────
+
+mat-card-content {
+  padding-top: 8px !important;
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
+  padding: 8px 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &.span-2 {
+    grid-column: 1 / -1;
+  }
+}
+
+.field-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.field-value {
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  word-break: break-word;
+
+  &--destacado {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--sol-primary);
+  }
+}
+
+// ── Badge contador ────────────────────────────────────────────────────────────
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 11px;
+  background-color: var(--sol-primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+// ── Estado vacío / error inline ───────────────────────────────────────────────
+
+.seccion-vacia {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+  color: #888;
+  font-size: 0.9rem;
+
+  &--error { color: #c62828; }
+}
+
+// ── Adjuntos ─────────────────────────────────────────────────────────────────
+
+.adjuntos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 0;
+}
+
+.adjunto-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+
+  &:hover { background: #f5f5f5; }
+}
+
+.adjunto-acciones {
+  margin-left: auto;
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+
+  button { color: var(--sol-primary); }
+}
+
+.adjunto-icon {
+  color: var(--sol-primary);
+  flex-shrink: 0;
+}
+
+.adjunto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.adjunto-nombre {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adjunto-meta {
+  font-size: 0.78rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.carpeta-badge {
+  background: #e3eaf3;
+  color: var(--sol-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.4px;
+}
+
+// ── Comentarios ───────────────────────────────────────────────────────────────
+
+.comentarios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 4px 0;
+}
+
+.comentario-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 8px;
+
+  & + .comentario-item {
+    border-top: 1px solid #f0f0f0;
+  }
+}
+
+.comentario-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e3eaf3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  mat-icon { color: var(--sol-primary); font-size: 20px; width: 20px; height: 20px; }
+}
+
+.comentario-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.comentario-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.comentario-usuario {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--sol-primary);
+}
+
+.comentario-fecha {
+  font-size: 0.78rem;
+  color: #aaa;
+}
+
+.comentario-texto {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+// ── Lightbox ──────────────────────────────────────────────────────────────────
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+  padding: 24px;
+}
+
+.lightbox-cerrar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: white;
+}
+
+.lightbox-imagen {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+
+// ── Error card ────────────────────────────────────────────────────────────────
+
+.error-card {
+  margin-bottom: 16px;
+  border-left: 4px solid #c62828;
+
+  mat-card-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    color: #c62828;
+  }
+}

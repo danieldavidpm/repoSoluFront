@@ -11,6 +11,12 @@
 npm-debug.log
 yarn-error.log
 
+# Environment files (never commit secrets)
+.env
+.env.*
+*.env
+src/environments/*.local.ts
+
 # IDEs and editors
 .idea/
 .project
@@ -29,7 +35,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
+/.angular/
 .sass-cache/
 /connect.lock
 /coverage
@@ -37,6 +43,9 @@ yarn-error.log
 testem.log
 /typings
 __screenshots__/
+
+# Development-only config (not needed in CI/production)
+proxy.conf.json
 
 # System files
 .DS_Store
